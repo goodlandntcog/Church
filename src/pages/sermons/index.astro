@@ -1,0 +1,27 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const sermons = (await getCollection('sermons')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<Layout title="Sermons" description="Sermon archive — New Testament Church of God, Barbados.">
+  <section class="max-w-3xl mx-auto px-4 sm:px-6 py-14">
+    <h1 class="text-3xl font-bold">Sermons</h1>
+    <p class="mt-2 text-stone-600">Past messages from our services.</p>
+
+    <div class="mt-8 divide-y divide-stone-200">
+      {sermons.map((s) => (
+        <a href={`/sermons/${s.id}`} class="block py-5 hover:bg-stone-50 -mx-4 px-4 rounded-lg transition-colors">
+          <div class="text-sm text-stone-500">
+            {s.data.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+            {s.data.speaker && ` · ${s.data.speaker}`}
+          </div>
+          <div class="text-lg font-semibold mt-1">{s.data.title}</div>
+          {s.data.summary && <p class="mt-1 text-stone-600 text-sm">{s.data.summary}</p>}
+        </a>
+      ))}
+      {sermons.length === 0 && <p class="py-8 text-stone-500">No sermons posted yet.</p>}
+    </div>
+  </section>
+</Layout>

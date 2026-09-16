@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const sermons = (await getCollection('sermons')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const latestSermon = sermons[0];
+
+const events = (await getCollection('events'))
+  .filter((e) => e.data.date.valueOf() >= Date.now() - 24 * 60 * 60 * 1000)
+  .sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf());
+const nextEvents = events.slice(0, 3);
+---
+
+<Layout title="Home">
+  <section class="bg-[#1B75BB] text-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-20 sm:py-28 text-center">
+      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight">New Testament Church of God</h1>
+      <p class="mt-4 text-lg text-white/90">Barbados — a family of faith, worshipping together.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/about" class="px-5 py-2.5 rounded-md bg-white text-[#1B75BB] font-medium hover:bg-stone-100 transition-colors">
+          Plan Your Visit
+        </a>
+        <a href="/sermons" class="px-5 py-2.5 rounded-md bg-[#F6921E] text-white font-medium hover:brightness-95 transition-all">
+          Watch Latest Sermon
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 py-14 grid gap-10 sm:grid-cols-3 text-center">
+    <div>
+      <div class="text-sm font-semibold tracking-wide text-[#1B75BB] uppercase">Service Times</div>
+      <p class="mt-2 text-stone-600">Sunday Worship<br />[time]</p>
+    </div>
+    <div>
+      <div class="text-sm font-semibold tracking-wide text-[#1B75BB] uppercase">Location</div>
+      <p class="mt-2 text-stone-600">[Street address]<br />Barbados</p>
+    </div>
+    <div>
+      <div class="text-sm font-semibold tracking-wide text-[#1B75BB] uppercase">Get in Touch</div>
+      <p class="mt-2 text-stone-600">[phone]<br />[email]</p>
+    </div>
+  </section>
+
+  {latestSermon && (
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 py-10">
+      <h2 class="text-xl font-semibold mb-4">Latest Sermon</h2>
+      <a href={`/sermons/${latestSermon.id}`} class="block rounded-xl border border-stone-200 p-6 hover:border-[#1B75BB] transition-colors">
+        <div class="text-sm text-stone-500">
+          {latestSermon.data.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+          {latestSermon.data.speaker && ` · ${latestSermon.data.speaker}`}
+        </div>
+        <div class="text-lg font-semibold mt-1">{latestSermon.data.title}</div>
+        {latestSermon.data.summary && <p class="mt-2 text-stone-600">{latestSermon.data.summary}</p>}
+      </a>
+    </section>
+  )}
+
+  {nextEvents.length > 0 && (
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 py-10">
+      <h2 class="text-xl font-semibold mb-4">Upcoming Events</h2>
+      <div class="grid gap-4 sm:grid-cols-3">
+        {nextEvents.map((e) => (
+          <div class="rounded-xl border border-stone-200 p-5">
+            <div class="text-sm font-medium text-[#F6921E]">
+              {e.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+            </div>
+            <div class="font-semibold mt-1">{e.data.title}</div>
+            {e.data.location && <div class="text-sm text-stone-500 mt-1">{e.data.location}</div>}
+          </div>
+        ))}
+      </div>
+      <a href="/events" class="inline-block mt-6 text-[#1B75BB] font-medium hover:underline">See all events →</a>
+    </section>
+  )}
+</Layout>
