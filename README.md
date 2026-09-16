@@ -1,6 +1,6 @@
 # church-site
 
-Website for New Testament Church of God, Barbados: info pages, a sermon archive, and an events list.
+Website for Good Land New Testament Church of God, Barbados: info pages, a sermon archive, and an events list.
 Built with [Astro](https://astro.build) + Tailwind CSS, deployed to Netlify as a static site.
 
 ## Getting started
