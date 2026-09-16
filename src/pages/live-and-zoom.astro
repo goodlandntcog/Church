@@ -2,10 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 
 const zoomSchedule = [
-  { label: 'Morning Worship', when: 'Sun 9:30am · Live stream + Zoom' },
-  { label: 'Evening Service', when: 'Sun 6:00pm · Zoom' },
-  { label: 'Prayer Meeting', when: 'Tue 7:00pm · Zoom' },
-  { label: 'Bible Study', when: 'Wed 7:00pm · Zoom' },
+  { label: 'Morning Worship', when: 'Sun 10:00am · In person + Zoom' },
+  { label: 'Prayer & Fasting', when: 'Wed 10:00am · Zoom' },
+  { label: 'Bible Study', when: 'Thu 7:00pm · Zoom' },
+  { label: "Men's Fellowship", when: '1st & 3rd Tue 7:00pm · Zoom' },
+  { label: "Women's Ministry", when: '2nd & 4th Wed 7:00pm · Zoom' },
+  { label: 'Early Morning Prayer', when: '1st Saturday 6:30am · Zoom' },
 ];
 ---
 
@@ -14,8 +16,8 @@ const zoomSchedule = [
     <div class="font-mono text-xs tracking-[0.22em] uppercase text-orange">Live &amp; on Zoom</div>
     <h1 class="font-serif text-4xl font-bold text-navy mt-3">Can't make it in? Join us online.</h1>
     <p class="mt-4 text-lg text-ink2 leading-relaxed">
-      Sunday morning streams live, and all three weekly services plus Wednesday Bible study run on Zoom — one click
-      to join.
+      One Zoom meeting covers all of our services — Sunday worship, Bible study, prayer, and our Men's and Women's
+      meetings. Same ID and passcode every time.
     </p>
 
     <div class="mt-8 grid gap-2.5">
@@ -29,7 +31,16 @@ const zoomSchedule = [
 
     <div class="mt-10 rounded-2xl border border-border bg-white p-6">
       <div class="font-serif text-xl font-semibold text-navy">Zoom link</div>
-      <p class="mt-2 text-ink2">[Zoom meeting link / ID / passcode — same one for every service, or list per-service if they differ]</p>
+      <p class="mt-2 text-ink2">
+        Meeting ID: <span class="font-semibold text-navy">839 9965 2681</span> · Passcode:
+        <span class="font-semibold text-navy">3LfSf3</span>
+      </p>
+      <a
+        href="https://zoom.us/j/83999652681"
+        class="inline-block mt-4 px-5 py-2.5 rounded-full bg-blue text-white font-bold hover:brightness-95 transition-all"
+      >
+        Join on Zoom →
+      </a>
     </div>
 
     <div class="mt-6 rounded-2xl border border-border bg-white p-6">

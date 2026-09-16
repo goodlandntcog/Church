@@ -11,17 +11,18 @@ const events = (await getCollection('events'))
 const nextEvents = events.slice(0, 3);
 
 const serviceTimes = [
-  { day: 'Sunday', time: '9:30am', label: 'Morning Worship' },
-  { day: 'Sunday', time: '6:00pm', label: 'Evening Service' },
-  { day: 'Tuesday', time: '7:00pm', label: 'Prayer Meeting' },
-  { day: 'Wednesday', time: '7:00pm', label: 'Bible Study' },
+  { day: 'Sunday', time: '8:45am', label: 'Sunday School' },
+  { day: 'Sunday', time: '10:00am', label: 'Morning Worship' },
+  { day: 'Wednesday', time: '10:00am', label: 'Prayer & Fasting' },
+  { day: 'Thursday', time: '7:00pm', label: 'Bible Study' },
 ];
 
 const zoomSchedule = [
-  { label: 'Morning Worship', when: 'Sun 9:30am · Live stream + Zoom' },
-  { label: 'Evening Service', when: 'Sun 6:00pm · Zoom' },
-  { label: 'Prayer Meeting', when: 'Tue 7:00pm · Zoom' },
-  { label: 'Bible Study', when: 'Wed 7:00pm · Zoom' },
+  { label: 'Morning Worship', when: 'Sun 10:00am · In person + Zoom' },
+  { label: 'Prayer & Fasting', when: 'Wed 10:00am · Zoom' },
+  { label: 'Bible Study', when: 'Thu 7:00pm · Zoom' },
+  { label: "Men's Fellowship", when: '1st & 3rd Tue 7:00pm · Zoom' },
+  { label: "Women's Ministry", when: '2nd & 4th Wed 7:00pm · Zoom' },
 ];
 
 const stripes = 'repeating-linear-gradient(115deg, rgba(255,255,255,0.043) 0px, rgba(255,255,255,0.043) 1px, transparent 1px, transparent 13px), #071a3a';
@@ -82,7 +83,7 @@ const photoPlaceholder =
     <div class="grid gap-5 [grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))]">
       {[
         { title: 'Worship on Sunday', body: 'Singing, Scripture and a message you can take into Monday. Children are welcome in the service, with Sunday School after the opening hymns.' },
-        { title: 'Grow midweek', body: "Wednesday evening Bible study goes deeper into the week's passage — questions encouraged, no prior knowledge assumed." },
+        { title: 'Grow midweek', body: "Thursday night Bible study — around the Word in 90 minutes — plus Wednesday morning Prayer & Fasting. Questions encouraged, no prior knowledge assumed." },
         { title: 'Serve the island', body: 'From hamper drives to visiting the sick and elderly, our outreach teams work across St. Michael and beyond.' },
       ].map((c) => (
         <div class="bg-white border border-border rounded-2xl p-7 shadow-[0_1px_2px_rgba(7,26,58,0.04),0_14px_32px_rgba(7,26,58,0.05)]">
@@ -144,8 +145,8 @@ const photoPlaceholder =
         </div>
         <h2 class="font-serif text-3xl font-bold text-navy mt-3.5" style="text-wrap: pretty;">Can't make it in? Join us online.</h2>
         <p class="text-[17px] leading-relaxed text-ink2 mt-2.5 max-w-[46ch]">
-          Sunday morning streams live, and all three weekly services plus Wednesday Bible study run on Zoom — one
-          click to join.
+          One Zoom meeting covers all of our services — Sunday worship, Bible study, prayer, and our Men's and
+          Women's meetings. Same ID and passcode every time.
         </p>
         <a href="/live-and-zoom" class="inline-block mt-[22px] px-6 py-[14px] rounded-full bg-blue text-white text-base font-bold hover:brightness-95 transition-all">
           Live stream &amp; Zoom links →
