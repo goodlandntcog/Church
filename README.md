@@ -100,5 +100,9 @@ The visual design (colors, type, layout) was built out from a Claude Design mock
 
 ## Deployment
 
-Configured for Netlify (`netlify.toml`): build command `npm run build`, publish directory `dist`.
-Connect the repo in Netlify and it deploys automatically on every push to `main`.
+Deployed via GitHub Pages (`.github/workflows/deploy.yml`) — every push to `main` builds the site
+and publishes `dist/` automatically. In the repo's Settings → Pages, set **Source** to "GitHub
+Actions" (one-time setup). Live at `https://goodlandntcog.github.io` (the repo is named
+`goodlandntcog.github.io` for the root URL, no path prefix — see the `site` comment in
+`astro.config.mjs` if the repo ever gets renamed back to something else, since that changes whether
+a `base` path is needed).
