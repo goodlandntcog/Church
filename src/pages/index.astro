@@ -17,8 +17,8 @@ const serviceTimes = [
   { day: 'Thursday', time: '7:00pm', label: 'Bible Study' },
 ];
 
-const zoomSchedule = [
-  { label: 'Morning Worship', when: 'Sun 10:00am · In person + Zoom' },
+const serviceSchedule = [
+  { label: 'Morning Worship', when: 'Sun 10:00am · In person + YouTube' },
   { label: 'Prayer & Fasting', when: 'Wed 10:00am · Zoom' },
   { label: 'Bible Study', when: 'Thu 7:00pm · Zoom' },
   { label: "Men's Fellowship", when: '1st & 3rd Tue 7:00pm · Zoom' },
@@ -145,15 +145,15 @@ const photoPlaceholder =
         </div>
         <h2 class="font-serif text-3xl font-bold text-navy mt-3.5" style="text-wrap: pretty;">Can't make it in? Join us online.</h2>
         <p class="text-[17px] leading-relaxed text-ink2 mt-2.5 max-w-[46ch]">
-          One Zoom meeting covers all of our services — Sunday worship, Bible study, prayer, and our Men's and
-          Women's meetings. Same ID and passcode every time.
+          Sunday morning worship streams live on YouTube — and one Zoom meeting covers everything else: Bible
+          study, prayer, and our Men's and Women's meetings.
         </p>
         <a href="/live-and-zoom" class="inline-block mt-[22px] px-6 py-[14px] rounded-full bg-blue text-white text-base font-bold hover:brightness-95 transition-all">
           Live stream &amp; Zoom links →
         </a>
       </div>
       <div class="min-w-0 grid gap-2.5">
-        {zoomSchedule.map((z) => (
+        {serviceSchedule.map((z) => (
           <div class="flex flex-wrap gap-x-3.5 gap-y-2 items-baseline justify-between px-[18px] py-[13px] rounded-xl bg-cream-card">
             <span class="text-base font-bold text-navy">{z.label}</span>
             <span class="text-[15px] text-ink2">{z.when}</span>

@@ -1,8 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-const zoomSchedule = [
-  { label: 'Morning Worship', when: 'Sun 10:00am · In person + Zoom' },
+const serviceSchedule = [
+  { label: 'Morning Worship', when: 'Sun 10:00am · In person + YouTube' },
   { label: 'Prayer & Fasting', when: 'Wed 10:00am · Zoom' },
   { label: 'Bible Study', when: 'Thu 7:00pm · Zoom' },
   { label: "Men's Fellowship", when: '1st & 3rd Tue 7:00pm · Zoom' },
@@ -16,12 +16,12 @@ const zoomSchedule = [
     <div class="font-mono text-xs tracking-[0.22em] uppercase text-orange">Live &amp; on Zoom</div>
     <h1 class="font-serif text-4xl font-bold text-navy mt-3">Can't make it in? Join us online.</h1>
     <p class="mt-4 text-lg text-ink2 leading-relaxed">
-      One Zoom meeting covers all of our services — Sunday worship, Bible study, prayer, and our Men's and Women's
-      meetings. Same ID and passcode every time.
+      Sunday morning worship streams live on YouTube — and one Zoom meeting covers everything else: Bible study,
+      prayer, and our Men's and Women's meetings.
     </p>
 
     <div class="mt-8 grid gap-2.5">
-      {zoomSchedule.map((z) => (
+      {serviceSchedule.map((z) => (
         <div class="flex flex-wrap gap-x-3.5 gap-y-2 items-baseline justify-between px-[18px] py-[13px] rounded-xl bg-cream-card">
           <span class="text-base font-bold text-navy">{z.label}</span>
           <span class="text-[15px] text-ink2">{z.when}</span>
@@ -30,7 +30,15 @@ const zoomSchedule = [
     </div>
 
     <div class="mt-10 rounded-2xl border border-border bg-white p-6">
-      <div class="font-serif text-xl font-semibold text-navy">Zoom link</div>
+      <div class="font-serif text-xl font-semibold text-navy">Sunday morning — YouTube</div>
+      <p class="mt-2 text-ink2">
+        [Link to the YouTube channel — Sunday morning worship (10:00am) streams live here. Past services also
+        appear on the <a href="/sermons" class="text-blue hover:underline">Sermons</a> page.]
+      </p>
+    </div>
+
+    <div class="mt-6 rounded-2xl border border-border bg-white p-6">
+      <div class="font-serif text-xl font-semibold text-navy">Everything else — Zoom</div>
       <p class="mt-2 text-ink2">
         Meeting ID: <span class="font-semibold text-navy">839 9965 2681</span> · Passcode:
         <span class="font-semibold text-navy">3LfSf3</span>
@@ -41,14 +49,6 @@ const zoomSchedule = [
       >
         Join on Zoom →
       </a>
-    </div>
-
-    <div class="mt-6 rounded-2xl border border-border bg-white p-6">
-      <div class="font-serif text-xl font-semibold text-navy">Livestream</div>
-      <p class="mt-2 text-ink2">
-        [Link to YouTube/Facebook channel — Sunday morning worship is streamed live here. Past services also appear
-        on the <a href="/sermons" class="text-blue hover:underline">Sermons</a> page.]
-      </p>
     </div>
   </section>
 </Layout>
