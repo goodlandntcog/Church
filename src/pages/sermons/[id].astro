@@ -16,17 +16,17 @@ const { Content } = await render(sermon);
 
 <Layout title={sermon.data.title} description={sermon.data.summary}>
   <article class="max-w-3xl mx-auto px-4 sm:px-6 py-14">
-    <a href="/sermons" class="text-sm text-[#1B75BB] hover:underline">← All sermons</a>
-    <h1 class="text-3xl font-bold mt-4">{sermon.data.title}</h1>
-    <div class="mt-2 text-stone-500">
+    <a href="/sermons" class="text-sm text-blue hover:underline">← All sermons</a>
+    <h1 class="font-serif text-4xl font-bold text-navy mt-4">{sermon.data.title}</h1>
+    <div class="mt-2 text-ink2">
       {sermon.data.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
       {sermon.data.speaker && ` · ${sermon.data.speaker}`}
       {sermon.data.series && ` · ${sermon.data.series}`}
     </div>
-    {sermon.data.scripture && <div class="mt-1 text-sm font-medium text-[#F6921E]">{sermon.data.scripture}</div>}
+    {sermon.data.scripture && <div class="mt-1 text-sm font-medium text-orange">{sermon.data.scripture}</div>}
 
     {sermon.data.youtubeId && (
-      <div class="mt-6 aspect-video rounded-xl overflow-hidden border border-stone-200">
+      <div class="mt-6 aspect-video rounded-2xl overflow-hidden border border-border">
         <iframe
           class="w-full h-full"
           src={`https://www.youtube.com/embed/${sermon.data.youtubeId}`}
@@ -37,7 +37,7 @@ const { Content } = await render(sermon);
       </div>
     )}
 
-    <div class="prose prose-stone max-w-none mt-8">
+    <div class="prose max-w-none mt-8">
       <Content />
     </div>
   </article>

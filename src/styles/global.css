@@ -1,2 +1,29 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+
+@import "@fontsource/playfair-display/500.css";
+@import "@fontsource/playfair-display/600.css";
+@import "@fontsource/playfair-display/700.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+
+/* Palette from the Claude Design mockup — kept here as tokens rather than scattered hex literals. */
+@theme {
+  --color-navy: #071a3a;
+  --color-navy-2: #0a1f4d;
+  --color-blue: #1b6fae;
+  --color-gold: #ffd200;
+  --color-orange: #f6921e;
+  --color-cream: #fbf8f2;
+  --color-cream-card: #f1ebdf;
+  --color-border: #ece4d6;
+  --color-border-2: #e6dfd2;
+  --color-ink2: #4d5765;
+
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}

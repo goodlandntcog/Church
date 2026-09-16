@@ -9,68 +9,192 @@ const events = (await getCollection('events'))
   .filter((e) => e.data.date.valueOf() >= Date.now() - 24 * 60 * 60 * 1000)
   .sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf());
 const nextEvents = events.slice(0, 3);
+
+const serviceTimes = [
+  { day: 'Sunday', time: '9:30am', label: 'Morning Worship' },
+  { day: 'Sunday', time: '6:00pm', label: 'Evening Service' },
+  { day: 'Tuesday', time: '7:00pm', label: 'Prayer Meeting' },
+  { day: 'Wednesday', time: '7:00pm', label: 'Bible Study' },
+];
+
+const zoomSchedule = [
+  { label: 'Morning Worship', when: 'Sun 9:30am · Live stream + Zoom' },
+  { label: 'Evening Service', when: 'Sun 6:00pm · Zoom' },
+  { label: 'Prayer Meeting', when: 'Tue 7:00pm · Zoom' },
+  { label: 'Bible Study', when: 'Wed 7:00pm · Zoom' },
+];
+
+const stripes = 'repeating-linear-gradient(115deg, rgba(255,255,255,0.043) 0px, rgba(255,255,255,0.043) 1px, transparent 1px, transparent 13px), #071a3a';
+const photoPlaceholder =
+  'repeating-linear-gradient(135deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 2px, transparent 2px, transparent 12px), #0d2a58';
 ---
 
 <Layout title="Home">
-  <section class="bg-[#1B75BB] text-white">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-20 sm:py-28 text-center">
-      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight">Good Land New Testament Church of God</h1>
-      <p class="mt-4 text-lg text-white/90">Barbados — a family of faith, worshipping together.</p>
-      <div class="mt-8 flex flex-wrap justify-center gap-3">
-        <a href="/about" class="px-5 py-2.5 rounded-md bg-white text-[#1B75BB] font-medium hover:bg-stone-100 transition-colors">
-          Plan Your Visit
-        </a>
-        <a href="/sermons" class="px-5 py-2.5 rounded-md bg-[#F6921E] text-white font-medium hover:brightness-95 transition-all">
-          Watch Latest Sermon
-        </a>
+  <section style={`background: ${stripes}; color: white;`}>
+    <div class="max-w-[1180px] mx-auto px-4 sm:px-6 py-20 sm:py-[84px] grid gap-11 items-center [grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))]">
+      <div class="min-w-0">
+        <div class="font-mono text-xs tracking-[0.24em] uppercase text-gold">Welcome home</div>
+        <h1 class="font-serif font-bold leading-[1.05] mt-4 text-[clamp(38px,6vw,62px)]" style="text-wrap: pretty;">
+          A church family on the rock of God's word.
+        </h1>
+        <p class="text-lg leading-relaxed text-[#cfe0f4] max-w-[46ch] mt-5" style="text-wrap: pretty;">
+          Whether you were born here, you've just moved to the island, or you're visiting for a week — there is a
+          seat, a warm welcome and a cup of tea waiting for you on Sunday.
+        </p>
+        <div class="flex flex-wrap gap-3 mt-7">
+          <a href="/visit" class="px-[26px] py-[15px] rounded-full bg-gold text-navy text-base font-bold hover:brightness-95 transition-all">
+            I'm new here →
+          </a>
+          <a href="/live-and-zoom" class="px-[26px] py-[15px] rounded-full bg-transparent border-[1.5px] border-white/40 text-white text-base font-semibold hover:bg-white/10 transition-colors">
+            Join us online
+          </a>
+        </div>
+        <div class="flex flex-wrap gap-6 mt-11 pt-6 border-t border-white/[0.14]">
+          {serviceTimes.map((s) => (
+            <div>
+              <div class="font-mono text-[11px] tracking-[0.16em] uppercase text-[#8fb4dd]">{s.day}</div>
+              <div class="font-serif text-[23px] font-semibold mt-1">{s.time}</div>
+              <div class="text-sm text-[#cfe0f4] mt-0.5">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="min-w-0 grid gap-3.5">
+        <div
+          class="aspect-[4/3] rounded-2xl overflow-hidden grid place-items-center p-5 border border-white/[0.14]"
+          style={`background: ${photoPlaceholder};`}
+        >
+          <div class="font-mono text-xs tracking-wide text-[#9fc0e4] text-center">congregation photo — 1600×1200</div>
+        </div>
+        <div class="grid grid-cols-2 gap-3.5">
+          <div class="aspect-square rounded-xl grid place-items-center p-3.5 border border-white/[0.14]" style={`background: ${photoPlaceholder};`}>
+            <div class="font-mono text-[11px] text-[#9fc0e4] text-center">worship photo</div>
+          </div>
+          <div class="aspect-square rounded-xl grid place-items-center p-3.5 border border-white/[0.14]" style={`background: ${photoPlaceholder};`}>
+            <div class="font-mono text-[11px] text-[#9fc0e4] text-center">youth photo</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="max-w-5xl mx-auto px-4 sm:px-6 py-14 grid gap-10 sm:grid-cols-3 text-center">
-    <div>
-      <div class="text-sm font-semibold tracking-wide text-[#1B75BB] uppercase">Service Times</div>
-      <p class="mt-2 text-stone-600">Sunday Worship<br />[time]</p>
-    </div>
-    <div>
-      <div class="text-sm font-semibold tracking-wide text-[#1B75BB] uppercase">Location</div>
-      <p class="mt-2 text-stone-600">[Street address]<br />Barbados</p>
-    </div>
-    <div>
-      <div class="text-sm font-semibold tracking-wide text-[#1B75BB] uppercase">Get in Touch</div>
-      <p class="mt-2 text-stone-600">[phone]<br />[email]</p>
+  <section class="max-w-[1180px] mx-auto px-4 sm:px-6 pt-[76px] pb-2">
+    <div class="grid gap-5 [grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))]">
+      {[
+        { title: 'Worship on Sunday', body: 'Singing, Scripture and a message you can take into Monday. Children are welcome in the service, with Sunday School after the opening hymns.' },
+        { title: 'Grow midweek', body: "Wednesday evening Bible study goes deeper into the week's passage — questions encouraged, no prior knowledge assumed." },
+        { title: 'Serve the island', body: 'From hamper drives to visiting the sick and elderly, our outreach teams work across St. Michael and beyond.' },
+      ].map((c) => (
+        <div class="bg-white border border-border rounded-2xl p-7 shadow-[0_1px_2px_rgba(7,26,58,0.04),0_14px_32px_rgba(7,26,58,0.05)]">
+          <div class="w-10 h-1 rounded bg-gold" />
+          <h3 class="font-serif text-2xl font-semibold text-navy mt-[18px]">{c.title}</h3>
+          <p class="text-base leading-relaxed text-ink2 mt-2.5" style="text-wrap: pretty;">{c.body}</p>
+        </div>
+      ))}
     </div>
   </section>
 
   {latestSermon && (
-    <section class="max-w-5xl mx-auto px-4 sm:px-6 py-10">
-      <h2 class="text-xl font-semibold mb-4">Latest Sermon</h2>
-      <a href={`/sermons/${latestSermon.id}`} class="block rounded-xl border border-stone-200 p-6 hover:border-[#1B75BB] transition-colors">
-        <div class="text-sm text-stone-500">
-          {latestSermon.data.date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
-          {latestSermon.data.speaker && ` · ${latestSermon.data.speaker}`}
+    <section class="max-w-[1180px] mx-auto px-4 sm:px-6 py-[66px]">
+      <div class="grid gap-10 items-center bg-navy-2 rounded-[20px] p-10 text-white [grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))]">
+        <div class="min-w-0">
+          <div class="font-mono text-xs tracking-[0.22em] uppercase text-gold">This Sunday</div>
+          <h2 class="font-serif font-bold mt-3.5 text-[clamp(28px,3.4vw,40px)]" style="text-wrap: pretty;">{latestSermon.data.title}</h2>
+          <p class="text-[17px] leading-relaxed text-[#cfe0f4] mt-3">
+            {latestSermon.data.speaker}
+            {latestSermon.data.scripture && ` · ${latestSermon.data.scripture}`}
+          </p>
+          <a href={`/sermons/${latestSermon.id}`} class="inline-block mt-6 px-[22px] py-[13px] rounded-full bg-white text-navy-2 text-[15px] font-bold hover:bg-stone-100 transition-colors">
+            All sermons &amp; livestream
+          </a>
         </div>
-        <div class="text-lg font-semibold mt-1">{latestSermon.data.title}</div>
-        {latestSermon.data.summary && <p class="mt-2 text-stone-600">{latestSermon.data.summary}</p>}
-      </a>
+        <div class="min-w-0">
+          {latestSermon.data.youtubeId ? (
+            <div class="aspect-video rounded-2xl overflow-hidden border border-white/[0.16]">
+              <iframe
+                class="w-full h-full"
+                src={`https://www.youtube.com/embed/${latestSermon.data.youtubeId}`}
+                title={latestSermon.data.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              />
+            </div>
+          ) : (
+            <div
+              class="aspect-video rounded-2xl grid place-items-center p-5 border border-white/[0.16]"
+              style="background: repeating-linear-gradient(135deg, rgba(255,255,255,0.07) 0px, rgba(255,255,255,0.07) 2px, transparent 2px, transparent 12px), #061530;"
+            >
+              <div class="text-center">
+                <div class="w-[58px] h-[58px] mx-auto rounded-full bg-orange grid place-items-center text-white text-xl">▶</div>
+                <div class="font-mono text-xs text-[#9fc0e4] mt-3.5">YouTube link — add a youtubeId in this sermon's frontmatter</div>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
     </section>
   )}
 
-  {nextEvents.length > 0 && (
-    <section class="max-w-5xl mx-auto px-4 sm:px-6 py-10">
-      <h2 class="text-xl font-semibold mb-4">Upcoming Events</h2>
-      <div class="grid gap-4 sm:grid-cols-3">
-        {nextEvents.map((e) => (
-          <div class="rounded-xl border border-stone-200 p-5">
-            <div class="text-sm font-medium text-[#F6921E]">
-              {e.data.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-            </div>
-            <div class="font-semibold mt-1">{e.data.title}</div>
-            {e.data.location && <div class="text-sm text-stone-500 mt-1">{e.data.location}</div>}
+  <section class="max-w-[1180px] mx-auto px-4 sm:px-6 pt-2.5 pb-10">
+    <div class="border border-border bg-white rounded-[20px] p-8 grid gap-7 items-center [grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))]">
+      <div class="min-w-0">
+        <div class="flex gap-2 items-center">
+          <div class="w-2.5 h-2.5 rounded-full bg-orange" />
+          <div class="font-mono text-[11px] tracking-[0.2em] uppercase text-orange">Live &amp; on Zoom</div>
+        </div>
+        <h2 class="font-serif text-3xl font-bold text-navy mt-3.5" style="text-wrap: pretty;">Can't make it in? Join us online.</h2>
+        <p class="text-[17px] leading-relaxed text-ink2 mt-2.5 max-w-[46ch]">
+          Sunday morning streams live, and all three weekly services plus Wednesday Bible study run on Zoom — one
+          click to join.
+        </p>
+        <a href="/live-and-zoom" class="inline-block mt-[22px] px-6 py-[14px] rounded-full bg-blue text-white text-base font-bold hover:brightness-95 transition-all">
+          Live stream &amp; Zoom links →
+        </a>
+      </div>
+      <div class="min-w-0 grid gap-2.5">
+        {zoomSchedule.map((z) => (
+          <div class="flex flex-wrap gap-x-3.5 gap-y-2 items-baseline justify-between px-[18px] py-[13px] rounded-xl bg-cream-card">
+            <span class="text-base font-bold text-navy">{z.label}</span>
+            <span class="text-[15px] text-ink2">{z.when}</span>
           </div>
         ))}
       </div>
-      <a href="/events" class="inline-block mt-6 text-[#1B75BB] font-medium hover:underline">See all events →</a>
+    </div>
+  </section>
+
+  {nextEvents.length > 0 && (
+    <section class="max-w-[1180px] mx-auto px-4 sm:px-6 pt-[26px] pb-[70px]">
+      <div class="flex flex-wrap gap-3.5 items-baseline justify-between mb-[26px]">
+        <h2 class="font-serif text-[34px] font-bold text-navy">What's coming up</h2>
+        <a href="/events" class="text-blue text-base font-bold hover:underline">Full calendar →</a>
+      </div>
+      <div class="grid gap-[18px] [grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))]">
+        {nextEvents.map((e) => (
+          <div class="bg-white border border-border rounded-2xl p-6 flex gap-[18px] items-start">
+            <div class="shrink-0 w-[62px] text-center rounded-xl bg-cream-card py-2.5 px-1.5">
+              <div class="font-mono text-[11px] tracking-wide uppercase text-blue">
+                {e.data.date.toLocaleDateString('en-US', { month: 'short' })}
+              </div>
+              <div class="font-serif text-2xl font-bold text-navy leading-tight">{e.data.date.getDate()}</div>
+            </div>
+            <div class="min-w-0">
+              <h3 class="text-lg font-bold text-navy mt-0.5">{e.data.title}</h3>
+              {e.data.summary && <div class="text-[15px] text-ink2 mt-1.5">{e.data.summary}</div>}
+              {e.data.location && <div class="text-[15px] text-ink2">{e.data.location}</div>}
+            </div>
+          </div>
+        ))}
+      </div>
     </section>
   )}
+
+  <section class="bg-cream-card border-y border-border-2">
+    <div class="max-w-[900px] mx-auto px-4 sm:px-6 py-[72px] text-center">
+      <div class="font-mono text-xs tracking-[0.22em] uppercase text-blue">From our pastor</div>
+      <p class="font-serif font-medium text-navy mt-[22px] text-[clamp(24px,3.2vw,34px)] leading-snug" style="text-wrap: pretty;">
+        "We are not a perfect people — we are a forgiven people, learning to love Barbados the way Christ loves her."
+      </p>
+      <div class="text-base font-semibold text-ink2 mt-[22px]">Pastor [Name] · Senior Pastor</div>
+    </div>
+  </section>
 </Layout>

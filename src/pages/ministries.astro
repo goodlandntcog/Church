@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Placeholder set — replace with the church's actual ministries.
+const ministries = [
+  { name: 'Youth Ministry', description: '[Who it serves, when it meets, how to get involved.]' },
+  { name: "Men's Fellowship", description: '[Who it serves, when it meets, how to get involved.]' },
+  { name: "Women's Ministry", description: '[Who it serves, when it meets, how to get involved.]' },
+  { name: 'Outreach & Missions', description: '[Hamper drives, visiting the sick/elderly, community service.]' },
+  { name: "Children's Church", description: '[Sunday School details, age groups.]' },
+  { name: 'Music & Worship', description: '[Choir/praise team — rehearsal times, how to join.]' },
+];
+---
+
+<Layout title="Ministries" description="Ministries at Goodland New Testament Church of God, Barbados.">
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 py-16">
+    <div class="font-mono text-xs tracking-[0.22em] uppercase text-blue">Get involved</div>
+    <h1 class="font-serif text-4xl font-bold text-navy mt-3">Ministries</h1>
+    <p class="mt-4 text-lg text-ink2 leading-relaxed max-w-2xl">
+      There's a place to serve and grow for everyone at Goodland — here's where to start.
+    </p>
+
+    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {ministries.map((m) => (
+        <div class="bg-white border border-border rounded-2xl p-6">
+          <div class="w-10 h-1 rounded bg-gold" />
+          <h3 class="font-serif text-xl font-semibold text-navy mt-4">{m.name}</h3>
+          <p class="mt-2 text-[15px] text-ink2 leading-relaxed">{m.description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+</Layout>

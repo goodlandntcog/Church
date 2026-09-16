@@ -1,30 +1,50 @@
 ---
+import Logo from './Logo.astro';
+
 const links = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
+  { href: '/live-and-zoom', label: 'Live & Zoom' },
+  { href: '/ministries', label: 'Ministries' },
   { href: '/sermons', label: 'Sermons' },
   { href: '/events', label: 'Events' },
+  { href: '/gallery', label: 'Gallery' },
+  { href: '/prayer', label: 'Prayer' },
+  { href: '/visit', label: 'Visit' },
 ];
 const path = Astro.url.pathname;
 ---
 
-<header class="bg-white border-b border-stone-200 sticky top-0 z-10">
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-    <a href="/" class="font-semibold text-lg text-[#1B75BB]">Good Land NTCG</a>
-    <nav class="flex gap-1 sm:gap-2">
+<header class="sticky top-0 z-20 bg-cream/95 backdrop-blur-sm border-b border-border-2">
+  <div class="max-w-[1180px] mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap gap-4 items-center justify-between">
+    <a href="/" class="flex items-center gap-3 min-w-0">
+      <Logo />
+      <div class="min-w-0">
+        <div class="font-serif text-[19px] font-bold text-navy leading-tight">Goodland New Testament Church of God</div>
+        <div class="font-mono text-[11px] tracking-[0.18em] uppercase text-blue mt-0.5">Barbados</div>
+      </div>
+    </a>
+    <nav class="flex flex-wrap gap-1 items-center">
       {links.map((l) => {
         const active = l.href === '/' ? path === '/' : path.startsWith(l.href);
         return (
           <a
             href={l.href}
-            class={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-              active ? 'bg-[#1B75BB]/10 text-[#1B75BB]' : 'text-stone-600 hover:bg-stone-100'
+            class={`relative px-2.5 py-2 rounded-lg text-[15px] font-semibold transition-colors ${
+              active ? 'text-navy' : 'text-[#2b3444] hover:bg-black/5'
             }`}
           >
             {l.label}
+            {active && <div class="absolute left-2.5 right-2.5 -bottom-0.5 h-0.5 rounded bg-orange" />}
           </a>
         );
       })}
+      <a
+        href="/visit"
+        class="ml-1.5 px-[18px] py-[11px] rounded-full bg-blue text-white text-[15px] font-bold hover:brightness-95 transition-all"
+      >
+        Plan your visit
+      </a>
     </nav>
   </div>
 </header>

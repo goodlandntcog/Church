@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Placeholder tiles — replace with real photos in public/gallery/ once available.
+const placeholderCount = 8;
+const photoPlaceholder =
+  'repeating-linear-gradient(135deg, rgba(7,26,58,0.06) 0px, rgba(7,26,58,0.06) 2px, transparent 2px, transparent 12px), #f1ebdf';
+---
+
+<Layout title="Gallery" description="Photo gallery — Goodland New Testament Church of God, Barbados.">
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 py-16">
+    <div class="font-mono text-xs tracking-[0.22em] uppercase text-blue">Life at Goodland</div>
+    <h1 class="font-serif text-4xl font-bold text-navy mt-3">Gallery</h1>
+    <p class="mt-4 text-lg text-ink2 leading-relaxed max-w-2xl">[Photos from services, events, and church life.]</p>
+
+    <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4">
+      {Array.from({ length: placeholderCount }).map((_, i) => (
+        <div
+          class="aspect-square rounded-xl border border-border grid place-items-center p-3"
+          style={`background: ${photoPlaceholder};`}
+        >
+          <div class="font-mono text-[11px] text-ink2 text-center">photo {i + 1}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+</Layout>

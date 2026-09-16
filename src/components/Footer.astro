@@ -1,25 +1,82 @@
 ---
+import Logo from './Logo.astro';
+
 const year = new Date().getFullYear();
+const exploreLinks = [
+  { href: '/about', label: 'About' },
+  { href: '/live-and-zoom', label: 'Live & Zoom' },
+  { href: '/ministries', label: 'Ministries' },
+  { href: '/sermons', label: 'Sermons' },
+  { href: '/events', label: 'Events' },
+  { href: '/gallery', label: 'Gallery' },
+  { href: '/prayer', label: 'Prayer' },
+  { href: '/visit', label: 'Visit' },
+];
+const gatherTimes = [
+  { label: 'Morning Worship', when: 'Sunday 9:30am' },
+  { label: 'Evening Service', when: 'Sunday 6:00pm' },
+  { label: 'Prayer Meeting', when: 'Tuesday 7:00pm' },
+  { label: 'Bible Study', when: 'Wednesday 7:00pm' },
+];
 ---
 
-<footer class="bg-stone-900 text-stone-300 mt-16">
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-10 grid gap-8 sm:grid-cols-3 text-sm">
-    <div>
-      <div class="text-white font-semibold mb-2">Good Land New Testament Church of God</div>
-      <p class="text-stone-400">[Street address], Barbados</p>
+<footer class="bg-navy text-[#cfe0f4] border-t-4 border-gold">
+  <div class="max-w-[1180px] mx-auto px-4 sm:px-6 pt-14 pb-8 grid gap-9 [grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))]">
+    <div class="min-w-0">
+      <div class="flex items-center gap-3">
+        <Logo size={54} />
+        <div class="font-serif text-[19px] font-bold text-white leading-tight">Goodland<br />New Testament<br />Church of God</div>
+      </div>
+      <p class="text-base leading-relaxed mt-4 max-w-[34ch]">
+        A New Testament Church of God assembly at Goodland, serving our neighbourhood and the wider island — in
+        person and on Zoom.
+      </p>
     </div>
-    <div>
-      <div class="text-white font-semibold mb-2">Service Times</div>
-      <p class="text-stone-400">Sunday Worship — [time]</p>
-      <p class="text-stone-400">Bible Study — [day/time]</p>
+    <div class="min-w-0">
+      <div class="font-mono text-[11px] tracking-[0.18em] uppercase text-gold">Explore</div>
+      <div class="grid grid-cols-2 gap-x-3.5 gap-y-1 mt-3.5">
+        {exploreLinks.map((l) => (
+          <a href={l.href} class="border-b border-white/10 py-2 text-[#cfe0f4] text-base font-semibold hover:text-white transition-colors">
+            {l.label}
+          </a>
+        ))}
+      </div>
     </div>
-    <div>
-      <div class="text-white font-semibold mb-2">Contact</div>
-      <p class="text-stone-400">[phone]</p>
-      <p class="text-stone-400">[email]</p>
+    <div class="min-w-0">
+      <div class="font-mono text-[11px] tracking-[0.18em] uppercase text-gold">Gather with us</div>
+      <div class="grid gap-2 mt-4 text-base">
+        {gatherTimes.map((t) => (
+          <div>{t.label} — {t.when}</div>
+        ))}
+      </div>
+    </div>
+    <div class="min-w-0">
+      <div class="font-mono text-[11px] tracking-[0.18em] uppercase text-gold">Contact</div>
+      <div class="grid gap-2 mt-4 text-base">
+        <div>[Street address], Goodland<br />St. Michael, Barbados</div>
+        <div>[phone]</div>
+        <div>[email]</div>
+      </div>
     </div>
   </div>
-  <div class="border-t border-stone-800 py-4 text-center text-xs text-stone-500">
-    &copy; {year} Good Land New Testament Church of God, Barbados. All rights reserved.
+  <div class="max-w-[1180px] mx-auto px-4 sm:px-6 py-5 border-t border-white/10 flex flex-wrap gap-x-6 gap-y-2 justify-between text-sm text-[#8fb4dd]">
+    <div>&copy; {year} Goodland New Testament Church of God, Barbados</div>
+    <div>&ldquo;Come to me, all you who are weary&rdquo; — Matthew 11:28</div>
+  </div>
+  <div class="bg-[#061530] text-[#cfe0f4] text-sm">
+    <div class="max-w-[1180px] mx-auto px-4 sm:px-6 py-3 flex flex-wrap gap-x-6 gap-y-2 items-center justify-between">
+      <div class="flex flex-wrap gap-x-4 gap-y-1.5 items-center">
+        <span>Sundays 9:30am &amp; 6:00pm</span>
+        <span class="text-gold">&bull;</span>
+        <span>Wednesday Bible Study 7:00pm</span>
+        <span class="text-gold">&bull;</span>
+        <span>In person &amp; on Zoom</span>
+      </div>
+      <div class="flex flex-wrap gap-x-4 gap-y-1.5 items-center">
+        <span>[phone]</span>
+        <span class="text-gold">&bull;</span>
+        <span>Goodland, St. Michael, Barbados</span>
+      </div>
+    </div>
   </div>
 </footer>
